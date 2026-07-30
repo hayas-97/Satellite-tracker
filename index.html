@@ -1,1 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Satellite Tracker Pro V3</title>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+  <!-- Favicon -->
+  <link rel="icon"
+    href="https://cdn-icons-png.flaticon.com/512/3212/3212608.png">
+
+</head>
+
+<body>
+
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="loader"></div>
+    <h2>Satellite Tracker Pro V3</h2>
+    <p>Loading Earth & Satellites...</p>
+  </div>
+
+  <!-- Map -->
+  <div id="map"></div>
+
+  <!-- Main Container -->
+  <div class="app-container">
+        <!-- Left Panel -->
+    <aside class="sidebar">
+
+      <div class="logo">
+        <i class="fas fa-satellite"></i>
+        <h1>Satellite Tracker Pro</h1>
+      </div>
+
+      <div class="search-box">
+        <input type="text" id="searchBox" placeholder="Search satellites...">
+      </div>
+
+      <div class="satellite-list">
+        <h3>🛰 Satellites</h3>
+        <div id="satelliteList"></div>
+      </div>
+
+      <div class="favorites">
+        <h3>⭐ Favorite Satellites</h3>
+        <div id="favoriteList"></div>
+      </div>
+
+    </aside>
+
+    <!-- Right Information Panel -->
+    <section class="info-panel">
+
+      <h2 id="satName">Select a Satellite</h2>
+
+      <div class="info-grid">
+
+        <div class="card">
+          <span>Latitude</span>
+          <strong id="satLat">--</strong>
+        </div>
+
+        <div class="card">
+          <span>Longitude</span>
+          <strong id="satLon">--</strong>
+        </div>
+
+        <div class="card">
+          <span>Altitude</span>
+          <strong id="satAlt">-- km</strong>
+        </div>
+
+        <div class="card">
+          <span>Speed</span>
+          <strong id="satSpeed">-- km/s</strong>
+        </div>
+
+        <div class="card">
+          <span>Distance</span>
+          <strong id="satDistance">-- km</strong>
+        </div>
+
+      </div>
+            <!-- Weather -->
+      <div class="weather-panel">
+        <h3>🌦 Current Weather</h3>
+
+        <div class="weather-card">
+          <div><b>Location:</b> <span id="weatherLocation">--</span></div>
+          <div><b>Temperature:</b> <span id="temperature">-- °C</span></div>
+          <div><b>Condition:</b> <span id="weatherCondition">--</span></div>
+          <div><b>Humidity:</b> <span id="humidity">-- %</span></div>
+          <div><b>Wind:</b> <span id="windSpeed">-- km/h</span></div>
+        </div>
+      </div>
+
+      <!-- GPS Information -->
+      <div class="gps-panel">
+        <h3>📍 Your Location</h3>
+
+        <div><b>Latitude:</b> <span id="myLat">--</span></div>
+        <div><b>Longitude:</b> <span id="myLon">--</span></div>
+        <div><b>Accuracy:</b> <span id="accuracy">--</span></div>
+        <div><b>Status:</b> <span id="gpsStatus">Waiting...</span></div>
+
+        <button id="locateBtn">
+          <i class="fas fa-location-crosshairs"></i>
+          My Location
+        </button>
+      </div>
+            <!-- Live Clock -->
+      <div class="clock-panel">
+        <h3>🕒 Time</h3>
+        <div id="localTime">--:--:--</div>
+        <div id="utcTime">UTC: --:--:--</div>
+      </div>
+
+      <!-- Controls -->
+      <div class="control-panel">
+
+        <button id="fullscreenBtn">
+          <i class="fas fa-expand"></i>
+          Full Screen
+        </button>
+
+        <button id="themeBtn">
+          <i class="fas fa-moon"></i>
+          Theme
+        </button>
+
+        <button id="refreshBtn">
+          <i class="fas fa-rotate"></i>
+          Refresh
+        </button>
+
+      </div>
+
+    </section>
+        <!-- Bottom Status Bar -->
+    <footer class="status-bar">
+
+      <div class="status-item">
+        🌍 Zoom:
+        <span id="zoomLevel">2</span>
+      </div>
+
+      <div class="status-item">
+        🛰 Satellites:
+        <span id="satCount">0</span>
+      </div>
+
+      <div class="status-item">
+        📡 GPS:
+        <span id="gpsState">Disconnected</span>
+      </div>
+
+      <div class="status-item">
+        🚀 Tracker Status:
+        <span id="trackerStatus">Ready</span>
+      </div>
+
+    </footer>
+
+  </div>
+
+  <!-- JavaScript Libraries -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/satellite.js@6.0.1/dist/satellite.min.js"></script>
+    <!-- Main JavaScript -->
+  <script src="script.js"></script>
+
+</body>
+
+</html>
