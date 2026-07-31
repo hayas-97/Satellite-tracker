@@ -1,1 +1,1 @@
-// Satellite data will go here
+const satellites = [];
