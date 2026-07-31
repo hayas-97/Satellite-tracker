@@ -403,3 +403,7 @@ document.getElementById("trackerStatus").textContent = "Ready";
 setTimeout(() => {
     map.invalidateSize();
 }, 500);
+window.onload = () => {
+    const loading = document.getElementById("loading-screen");
+    if (loading) loading.style.display = "none";
+};
