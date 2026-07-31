@@ -186,9 +186,14 @@ function updateSatellites() {
     });
 
 }
+try {
+    updateSatellites();
+    setInterval(updateSatellites, 1000);
+} catch (e) {
+    console.error(e);
+    document.getElementById("loading-screen").style.display = "none";
+}
 
-updateSatellites();
-setInterval(updateSatellites, 1000);
 /* ============================
    Part 6 - Search Satellites
 ============================ */
