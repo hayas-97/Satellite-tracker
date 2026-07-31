@@ -157,49 +157,44 @@ function updateSatellites() {
     satellites.forEach((sat, index) => {
 
         try {
-    const satrec = satellite.twoline2satrec(sat.tle1, sat.tle2);
 
-    const positionVelocity = satellite.propagate(satrec, now);
+            const satrec = satellite.twoline2satrec(sat.tle1, sat.tle2);
 
-    if (!positionVelocity || !positionVelocity.position) return;
+            const positionVelocity = satellite.propagate(satrec, now);
 
-    // Keep the rest of your existing code here...
+            if (!positionVelocity || !positionVelocity.position) return;
 
-} catch (err) {
-    console.error("Satellite error:", err);
-        }
+            const gmst = satellite.gstime(now);
 
-        const gmst = satellite.gstime(now);
+            const geo = satellite.eciToGeodetic(
+                positionVelocity.position,
+                gmst
+            );
 
-        const geo = satellite.eciToGeodetic(
-            positionVelocity.position,
-            gmst
-        );
+            const lat = satellite.degreesLat(geo.latitude);
+            const lon = satellite.degreesLong(geo.longitude);
+            const alt = geo.height;
 
-        const lat = satellite.degreesLat(geo.latitude);
-        const lon = satellite.degreesLong(geo.longitude);
-        const alt = geo.height;
+            satelliteMarkers[index].setLatLng([lat, lon]);
 
-        satelliteMarkers[index].setLatLng([lat, lon]);
+            if (selectedSatellite === index) {
 
-        if (selectedSatellite === index) {
+                document.getElementById("satLat").textContent = lat.toFixed(4) + "°";
+                document.getElementById("satLon").textContent = lon.toFixed(4) + "°";
+                document.getElementById("satAlt").textContent = alt.toFixed(2) + " km";
 
-            document.getElementById("satLat").textContent = lat.toFixed(4) + "°";
-            document.getElementById("satLon").textContent = lon.toFixed(4) + "°";
-            document.getElementById("satAlt").textContent = alt.toFixed(2) + " km";
+            }
 
+        } catch (err) {
+            console.error("Satellite error:", err);
         }
 
     });
 
 }
-try {
-    updateSatellites();
-    setInterval(updateSatellites, 1000);
-} catch (e) {
-    console.error(e);
-    document.getElementById("loading-screen").style.display = "none";
-}
+
+updateSatellites();
+setInterval(updateSatellites, 1000);
 
 /* ============================
    Part 6 - Search Satellites
@@ -402,6 +397,7 @@ document.getElementById("locateBtn").addEventListener("click", () => {
 
 // Hide Leaflet attribution (optional)
 const attribution = document.querySelector(".leaflet-control-attribution");
+
 if (attribution) {
     attribution.style.display = "none";
 }
@@ -411,11 +407,7 @@ console.log("🚀 Satellite Tracker Pro V3 Loaded Successfully!");
 
 document.getElementById("trackerStatus").textContent = "Ready";
 
-// Force map refresh
+// Refresh map after loading
 setTimeout(() => {
     map.invalidateSize();
 }, 500);
-window.onload = () => {
-    const loading = document.getElementById("loading-screen");
-    if (loading) loading.style.display = "none";
-};
