@@ -156,11 +156,18 @@ function updateSatellites() {
 
     satellites.forEach((sat, index) => {
 
-        const satrec = satellite.twoline2satrec(sat.tle1, sat.tle2);
+        try {
+    const satrec = satellite.twoline2satrec(sat.tle1, sat.tle2);
 
-        const positionVelocity = satellite.propagate(satrec, now);
+    const positionVelocity = satellite.propagate(satrec, now);
 
-        if (!positionVelocity.position) return;
+    if (!positionVelocity || !positionVelocity.position) return;
+
+    // Keep the rest of your existing code here...
+
+} catch (err) {
+    console.error("Satellite error:", err);
+        }
 
         const gmst = satellite.gstime(now);
 
