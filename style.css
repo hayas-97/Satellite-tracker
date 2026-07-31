@@ -12,7 +12,7 @@ html,body{
     height:100%;
     overflow:hidden;
     background:#07131f;
-    color:white;
+    color:#ffffff;
 }
 
 #map{
@@ -24,7 +24,9 @@ html,body{
     z-index:1;
 }
 
-.container{
+/* ===== Main Container ===== */
+
+.app-container{
     position:relative;
     z-index:1000;
     width:100%;
@@ -32,10 +34,12 @@ html,body{
     pointer-events:none;
 }
 
-.panel{
+/* ===== Sidebar & Info Panel ===== */
+
+.sidebar,
+.info-panel{
     position:absolute;
     top:15px;
-    left:15px;
     width:340px;
     max-height:90vh;
     overflow:auto;
@@ -46,19 +50,36 @@ html,body{
     box-shadow:0 10px 25px rgba(0,0,0,.45);
     pointer-events:auto;
 }
-/* ===== Title ===== */
 
-.title{
-    font-size:30px;
-    font-weight:bold;
-    color:#3cb6ff;
+.sidebar{
+    left:15px;
+}
+
+.info-panel{
+    right:15px;
+}
+
+/* ===== Logo ===== */
+
+.logo{
     text-align:center;
     margin-bottom:18px;
 }
 
+.logo i{
+    font-size:32px;
+    color:#3cb6ff;
+    margin-bottom:8px;
+}
+
+.logo h1{
+    font-size:24px;
+    color:#3cb6ff;
+}
+
 /* ===== Search Box ===== */
 
-#search{
+#searchBox{
     width:100%;
     padding:12px;
     border:none;
@@ -92,6 +113,7 @@ html,body{
 .satellite-item.active{
     background:#2196f3;
 }
+
 /* ===== Information Cards ===== */
 
 .info-grid{
@@ -125,7 +147,8 @@ html,body{
     font-size:18px;
     color:#ffffff;
 }
-/* ===== Weather Panel ===== */
+
+/* ===== Weather / GPS / Clock ===== */
 
 .weather-panel,
 .gps-panel,
@@ -158,15 +181,16 @@ button{
     border:none;
     border-radius:10px;
     background:#2196f3;
-    color:#fff;
+    color:#ffffff;
     font-size:15px;
     cursor:pointer;
-    transition:.3s;
+    transition:0.3s;
 }
 
 button:hover{
     background:#1976d2;
 }
+
 /* ===== Footer Status Bar ===== */
 
 .status-bar{
@@ -182,10 +206,12 @@ button:hover{
     backdrop-filter:blur(12px);
     z-index:1000;
     pointer-events:auto;
+    flex-wrap:wrap;
+    justify-content:center;
 }
 
 .status-item{
-    color:#fff;
+    color:#ffffff;
     font-size:14px;
     white-space:nowrap;
 }
@@ -204,16 +230,20 @@ button:hover{
 ::-webkit-scrollbar-track{
     background:rgba(255,255,255,.08);
 }
+
 /* ===== Responsive Design ===== */
 
 @media (max-width:768px){
 
-    .panel{
+    .sidebar,
+    .info-panel{
+        position:relative;
         width:95%;
-        left:50%;
-        transform:translateX(-50%);
-        top:10px;
-        max-height:75vh;
+        left:auto;
+        right:auto;
+        top:auto;
+        margin:10px auto;
+        max-height:none;
     }
 
     .info-grid{
@@ -224,10 +254,9 @@ button:hover{
         width:95%;
         left:50%;
         transform:translateX(-50%);
-        justify-content:space-around;
+        justify-content:center;
         flex-wrap:wrap;
         gap:10px;
-        font-size:12px;
     }
 
     button{
@@ -235,8 +264,8 @@ button:hover{
         padding:10px;
     }
 
-    .title{
-        font-size:24px;
+    .logo h1{
+        font-size:22px;
     }
 }
 
@@ -267,7 +296,8 @@ button:hover{
     from{transform:rotate(0deg);}
     to{transform:rotate(360deg);}
 }
-/* ===== End of style.css ===== */
+
+/* ===== Extra Effects ===== */
 
 .hidden{
     display:none !important;
