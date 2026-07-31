@@ -81,24 +81,6 @@ navigator.geolocation.watchPosition(
    Part 3 - Satellite Data
 ============================ */
 
-const satellites = [
-    {
-        name: "ISS (ZARYA)",
-        tle1: "1 25544U 98067A   26195.50000000  .00016717  00000+0  30289-3 0  9993",
-        tle2: "2 25544  51.6417  81.5023 0004755  48.2007 311.9420 15.50032114502518"
-    },
-    {
-        name: "Hubble Space Telescope",
-        tle1: "1 20580U 90037B   26195.50000000  .00000850  00000+0  45000-4 0  9992",
-        tle2: "2 20580  28.4698 145.2184 0002893  92.8164 267.3031 15.09211542432154"
-    },
-    {
-        name: "NOAA 15",
-        tle1: "1 25338U 98030A   26195.50000000  .00000091  00000+0  72283-4 0  9993",
-        tle2: "2 25338  98.7238 208.3672 0011454 168.4832 191.6574 14.25906807399363"
-    }
-];
-
 const satIcon = L.divIcon({
     html: '<div style="width:14px;height:14px;background:#ff3b30;border:3px solid white;border-radius:50%;"></div>',
     className: "",
