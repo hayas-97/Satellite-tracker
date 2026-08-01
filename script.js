@@ -80,7 +80,36 @@ navigator.geolocation.watchPosition(
 /* ============================
    Part 3 - Satellite Data
 ============================ */
+// ============================
+// Load satellites from tle.txt
+// ============================
 
+let satellites = [];
+
+async function loadSatellites() {
+    const response = await fetch("tle.txt");
+    const text = await response.text();
+
+    const lines = text.split("\n").map(line => line.trim()).filter(line => line);
+
+    for (let i = 0; i < lines.length; i += 3) {
+        if (i + 2 < lines.length) {
+            satellites.push({
+                name: lines[i],
+                tle1: lines[i + 1],
+                tle2: lines[i + 2]
+            });
+        }
+    }
+
+    document.getElementById("satCount").textContent = satellites.length;
+
+    createSatelliteMarkers();
+    updateSatellites();
+    setInterval(updateSatellites, 1000);
+}
+
+loadSatellites();
 const satIcon = L.divIcon({
     html: '<div style="width:14px;height:14px;background:#ff3b30;border:3px solid white;border-radius:50%;"></div>',
     className: "",
