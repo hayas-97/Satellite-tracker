@@ -87,7 +87,11 @@ navigator.geolocation.watchPosition(
 let satellites = [];
 
 async function loadSatellites() {
-    const response = await fetch("tle.txt");
+    const response = await fetch("./tle.txt");
+
+if (!response.ok) {
+    throw new Error("Could not load tle.txt");
+}
     const text = await response.text();
 
     const lines = text.split("\n").map(line => line.trim()).filter(line => line);
@@ -122,7 +126,7 @@ document.getElementById("satCount").textContent = satellites.length;
    Part 4 - Create Satellite Markers
 ============================ */
 
-function createSatelliteMarkers() {
+function {
 
     satellites.forEach((sat, index) => {
 
@@ -161,7 +165,7 @@ createSatelliteMarkers();
    Part 5 - Live Satellite Tracking
 ============================ */
 
-function updateSatellites() {
+function  {
 
     const now = new Date();
 
@@ -205,7 +209,6 @@ function updateSatellites() {
 }
 
 updateSatellites();
-setInterval(updateSatellites, 1000);
 
 /* ============================
    Part 6 - Search Satellites
