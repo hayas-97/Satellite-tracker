@@ -3,4 +3,4 @@
    Part 1
 ========================================== */
 
-const satellites = [];
+// Satellite data is loaded from tle.txt
