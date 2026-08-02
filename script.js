@@ -61,7 +61,26 @@ async function loadSatellites() {
 
         console.log("Loaded", satellites.length, "satellites");
         createSatelliteMarkers();
+const satelliteList = document.getElementById("satelliteList");
 
+if (satelliteList) {
+    satelliteList.innerHTML = "";
+
+    satellites.forEach((sat, index) => {
+        const item = document.createElement("div");
+        item.className = "sat-item";
+        item.textContent = sat.name;
+
+        item.onclick = () => {
+            if (satelliteMarkers[index]) {
+                satelliteMarkers[index].openPopup();
+                map.setView(satelliteMarkers[index].getLatLng(), 5);
+            }
+        };
+
+        satelliteList.appendChild(item);
+    });
+}
 const loadingScreen = document.getElementById("loading-screen");
 if (loadingScreen) {
     loadingScreen.style.display = "none";
