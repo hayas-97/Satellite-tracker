@@ -181,7 +181,11 @@
 <script src="https://unpkg.com/satellite.js@6.0.1/dist/satellite.min.js"></script>
 
 <script src="satellites.js"></script>
-
+<script>
+window.onerror = function(message, source, lineno, colno) {
+    alert("Error: " + message + "\nLine: " + lineno);
+};
+</script>
 <script src="script.js"></script>
 
 </body>
