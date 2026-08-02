@@ -15,3 +15,19 @@ let satellites = [];
 let satelliteMarkers = [];
 let userMarker = null;
 let selectedSatellite = null;
+// Zoom level display
+const zoomLevel = document.getElementById("zoomLevel");
+
+map.on("zoomend", () => {
+    if (zoomLevel) {
+        zoomLevel.textContent = map.getZoom();
+    }
+});
+
+// Satellite icon
+const satIcon = L.divIcon({
+    html: '<div style="width:14px;height:14px;background:#ff3b30;border:3px solid white;border-radius:50%;"></div>',
+    className: "",
+    iconSize: [20, 20],
+    iconAnchor: [10, 10]
+});
