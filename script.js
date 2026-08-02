@@ -60,6 +60,12 @@ async function loadSatellites() {
         if (count) count.textContent = satellites.length;
 
         console.log("Loaded", satellites.length, "satellites");
+        createSatelliteMarkers();
+
+const loadingScreen = document.getElementById("loading-screen");
+if (loadingScreen) {
+    loadingScreen.style.display = "none";
+    }
     } catch (err) {
         console.error(err);
         alert("Failed to load tle.txt");
@@ -80,7 +86,5 @@ function createSatelliteMarkers() {
         satelliteMarkers.push(marker);
     });
 }
-loadSatellites().then(() => {
-    createSatelliteMarkers();
-});
+loadSatellites();
 
