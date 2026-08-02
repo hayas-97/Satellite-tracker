@@ -99,10 +99,19 @@ function createSatelliteMarkers() {
         const lng = (Math.random() * 360) - 180;
 
         const marker = L.marker([lat, lng], { icon: satIcon })
-            .addTo(map)
-            .bindPopup(`<b>${sat.name}</b>`);
+    .addTo(map)
+    .bindPopup(`<b>${sat.name}</b>`);
 
-        satelliteMarkers.push(marker);
+marker.on("click", () => {
+    document.getElementById("satName").textContent = sat.name;
+    document.getElementById("satLat").textContent = lat.toFixed(4) + "°";
+    document.getElementById("satLon").textContent = lng.toFixed(4) + "°";
+    document.getElementById("satAlt").textContent = "500 km";
+    document.getElementById("satSpeed").textContent = "7.66 km/s";
+    document.getElementById("satDistance").textContent = "-- km";
+});
+
+satelliteMarkers.push(marker);
     });
 }
 loadSatellites();
