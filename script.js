@@ -106,4 +106,37 @@ function createSatelliteMarkers() {
     });
 }
 loadSatellites();
+document.getElementById("locateBtn").addEventListener("click", () => {
+    if (!navigator.geolocation) {
+        alert("Geolocation is not supported by this browser.");
+        return;
+    }
 
+    document.getElementById("gpsStatus").textContent = "Getting location...";
+
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+
+            document.getElementById("myLat").textContent = lat.toFixed(6);
+            document.getElementById("myLon").textContent = lon.toFixed(6);
+            document.getElementById("accuracy").textContent =
+                position.coords.accuracy.toFixed(1) + " m";
+            document.getElementById("gpsStatus").textContent = "Connected";
+
+            if (userMarker) {
+                map.removeLayer(userMarker);
+            }
+
+            userMarker = L.marker([lat, lon]).addTo(map);
+            userMarker.bindPopup("📍 Your Location").openPopup();
+
+            map.setView([lat, lon], 12);
+        },
+        (error) => {
+            document.getElementById("gpsStatus").textContent = error.message;
+            alert("Unable to get your location.");
+        }
+    );
+});
