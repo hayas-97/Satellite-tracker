@@ -65,4 +65,22 @@ async function loadSatellites() {
         alert("Failed to load tle.txt");
     }
 }
-loadSatellites();
+function createSatelliteMarkers() {
+    satelliteMarkers.forEach(marker => map.removeLayer(marker));
+    satelliteMarkers = [];
+
+    satellites.forEach(sat => {
+        const lat = (Math.random() * 180) - 90;
+        const lng = (Math.random() * 360) - 180;
+
+        const marker = L.marker([lat, lng], { icon: satIcon })
+            .addTo(map)
+            .bindPopup(`<b>${sat.name}</b>`);
+
+        satelliteMarkers.push(marker);
+    });
+}
+loadSatellites().then(() => {
+    createSatelliteMarkers();
+});
+
