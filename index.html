@@ -127,18 +127,6 @@
         <div id="localTime">--:--:--</div>
         <div id="utcTime">UTC: --:--:--</div>
       </div>
-      function updateClock() {
-    const now = new Date();
-
-    const local = now.toLocaleTimeString();
-    const utc = now.toUTCString().split(" ")[4];
-
-    document.getElementById("localTime").textContent = local;
-    document.getElementById("utcTime").textContent = "UTC: " + utc;
-}
-
-updateClock();
-setInterval(updateClock, 1000);
 
       <!-- Controls -->
       <div class="control-panel">
