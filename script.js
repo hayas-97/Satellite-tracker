@@ -140,3 +140,15 @@ document.getElementById("locateBtn").addEventListener("click", () => {
         }
     );
 });
+function updateClock() {
+    const now = new Date();
+
+    document.getElementById("localTime").textContent =
+        now.toLocaleTimeString();
+
+    document.getElementById("utcTime").textContent =
+        "UTC: " + now.toUTCString().split(" ")[4];
+}
+
+updateClock();
+setInterval(updateClock, 1000);
