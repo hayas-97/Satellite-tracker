@@ -198,3 +198,6 @@ async function updateWeather(lat, lon) {
         console.error(err);
     }
 }
+setInterval(() => {
+    createSatelliteMarkers();
+}, 5000);
