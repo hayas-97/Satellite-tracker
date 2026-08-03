@@ -98,7 +98,8 @@ function createSatelliteMarkers() {
         const satrec = satellite.twoline2satrec(sat.tle1, sat.tle2);
 
 const positionAndVelocity = satellite.propagate(satrec, new Date());
-
+const position = positionAndVelocity.position;
+const velocity = positionAndVelocity.velocity;
 if (!positionAndVelocity.position) return;
 
 const gmst = satellite.gstime(new Date());
@@ -116,8 +117,23 @@ marker.on("click", () => {
     document.getElementById("satName").textContent = sat.name;
     document.getElementById("satLat").textContent = lat.toFixed(4) + "°";
     document.getElementById("satLon").textContent = lng.toFixed(4) + "°";
-    document.getElementById("satAlt").textContent = "500 km";
-    document.getElementById("satSpeed").textContent = "7.66 km/s";
+    const altitude = Math.sqrt(
+    position.x * position.x +
+    position.y * position.y +
+    position.z * position.z
+) - 6371;
+
+const speed = Math.sqrt(
+    velocity.x * velocity.x +
+    velocity.y * velocity.y +
+    velocity.z * velocity.z
+);
+
+document.getElementById("satAlt").textContent =
+    altitude.toFixed(2) + " km";
+
+document.getElementById("satSpeed").textContent =
+    speed.toFixed(2) + " km/s";
     document.getElementById("satDistance").textContent = "-- km";
 });
 
