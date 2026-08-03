@@ -148,7 +148,6 @@ document.getElementById("satSpeed").textContent =
     document.getElementById("satDistance").textContent =
         "Enable GPS";
     }
-    document.getElementById("satDistance").textContent = "-- km";
 });
 
 satelliteMarkers.push(marker);
