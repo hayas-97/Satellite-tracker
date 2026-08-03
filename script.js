@@ -95,8 +95,18 @@ function createSatelliteMarkers() {
     satelliteMarkers = [];
 
     satellites.forEach(sat => {
-        const lat = (Math.random() * 180) - 90;
-        const lng = (Math.random() * 360) - 180;
+        const satrec = satellite.twoline2satrec(sat.tle1, sat.tle2);
+
+const positionAndVelocity = satellite.propagate(satrec, new Date());
+
+if (!positionAndVelocity.position) return;
+
+const gmst = satellite.gstime(new Date());
+
+const geo = satellite.eciToGeodetic(positionAndVelocity.position, gmst);
+
+const lat = satellite.degreesLat(geo.latitude);
+const lng = satellite.degreesLong(geo.longitude);
 
         const marker = L.marker([lat, lng], { icon: satIcon })
     .addTo(map)
