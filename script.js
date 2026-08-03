@@ -14,6 +14,8 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 let satellites = [];
 let satelliteMarkers = [];
 let userMarker = null;
+let userLat = null;
+let userLon = null;
 let selectedSatellite = null;
 // Zoom level display
 const zoomLevel = document.getElementById("zoomLevel");
@@ -134,6 +136,18 @@ document.getElementById("satAlt").textContent =
 
 document.getElementById("satSpeed").textContent =
     speed.toFixed(2) + " km/s";
+    if (userLat !== null && userLon !== null) {
+    const distance = map.distance(
+        [userLat, userLon],
+        [lat, lng]
+    ) / 1000;
+
+    document.getElementById("satDistance").textContent =
+        distance.toFixed(2) + " km";
+} else {
+    document.getElementById("satDistance").textContent =
+        "Enable GPS";
+    }
     document.getElementById("satDistance").textContent = "-- km";
 });
 
@@ -153,6 +167,8 @@ document.getElementById("locateBtn").addEventListener("click", () => {
         (position) => {
             const lat = position.coords.latitude;
             const lon = position.coords.longitude;
+            userLat = lat;
+            userLon = lon;
 
             document.getElementById("myLat").textContent = lat.toFixed(6);
             document.getElementById("myLon").textContent = lon.toFixed(6);
