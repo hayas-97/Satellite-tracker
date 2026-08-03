@@ -145,7 +145,8 @@ document.getElementById("locateBtn").addEventListener("click", () => {
         },
         (error) => {
             document.getElementById("gpsStatus").textContent = error.message;
-            alert("Unable to get your location.");
+            alert("Unable to get your location.")
+            updateWeather(lat, lon);
         }
     );
 });
@@ -161,3 +162,29 @@ function updateClock() {
 
 updateClock();
 setInterval(updateClock, 1000);
+async function updateWeather(lat, lon) {
+    try {
+        const response = await fetch(
+            `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m`
+        );
+
+        const data = await response.json();
+
+        document.getElementById("weatherLocation").textContent =
+            lat.toFixed(2) + ", " + lon.toFixed(2);
+
+        document.getElementById("temperature").textContent =
+            data.current.temperature_2m + " °C";
+
+        document.getElementById("humidity").textContent =
+            data.current.relative_humidity_2m + " %";
+
+        document.getElementById("windSpeed").textContent =
+            data.current.wind_speed_10m + " km/h";
+
+        document.getElementById("weatherCondition").textContent =
+            "Live Weather";
+    } catch (err) {
+        console.error(err);
+    }
+}
