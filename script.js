@@ -142,11 +142,11 @@ document.getElementById("locateBtn").addEventListener("click", () => {
             userMarker.bindPopup("📍 Your Location").openPopup();
 
             map.setView([lat, lon], 12);
+            updateWeather(lat, lon);
         },
         (error) => {
             document.getElementById("gpsStatus").textContent = error.message;
             alert("Unable to get your location.")
-            updateWeather(lat, lon);
         }
     );
 });
