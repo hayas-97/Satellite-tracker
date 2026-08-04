@@ -238,15 +238,8 @@ setInterval(() => {
 // ===== Satellite Popup =====
 
 const satelliteImages = {
-    "HST": "https://upload.wikimedia.org/wikipedia/commons/3/3f/HST-SM4.jpeg",
-    "POLAR": "https://upload.wikimedia.org/wikipedia/commons/4/42/POLAR_spacecraft.jpg",
-    "LAGEOS 1": "https://upload.wikimedia.org/wikipedia/commons/0/0c/LAGEOS.jpg",
-    "LAGEOS 2": "https://upload.wikimedia.org/wikipedia/commons/0/0c/LAGEOS.jpg",
-    "STARLETTE": "https://upload.wikimedia.org/wikipedia/commons/7/70/Starlette.jpg",
-
-    default: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Satellite_icon.svg/512px-Satellite_icon.svg.png"
+    default: "https://placehold.co/300x200/png?text=Satellite"
 };
-
 function showSatellitePopup(name) {
     const popup = document.getElementById("satellitePopup");
     const image = document.getElementById("popupImage");
