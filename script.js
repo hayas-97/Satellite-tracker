@@ -232,3 +232,23 @@ async function updateWeather(lat, lon) {
 setInterval(() => {
     createSatelliteMarkers();
 }, 5000);
+// ===== Satellite Popup =====
+
+const satelliteImages = {
+    default: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Artificial_satellite.png"
+};
+
+function showSatellitePopup(name) {
+    const popup = document.getElementById("satellitePopup");
+    const image = document.getElementById("popupImage");
+    const title = document.getElementById("popupName");
+
+    image.src = satelliteImages[name] || satelliteImages.default;
+    title.textContent = name;
+
+    popup.style.display = "block";
+
+    setTimeout(() => {
+        popup.style.display = "none";
+    }, 3000);
+}
