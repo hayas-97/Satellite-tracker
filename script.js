@@ -74,11 +74,13 @@ if (satelliteList) {
         item.textContent = sat.name;
 
         item.onclick = () => {
-            if (satelliteMarkers[index]) {
-                satelliteMarkers[index].openPopup();
-                map.setView(satelliteMarkers[index].getLatLng(), 5);
-            }
-        };
+    showSatellitePopup(sat.name);
+
+    if (satelliteMarkers[index]) {
+        satelliteMarkers[index].openPopup();
+        map.setView(satelliteMarkers[index].getLatLng(), 5);
+    }
+};
 
         satelliteList.appendChild(item);
     });
