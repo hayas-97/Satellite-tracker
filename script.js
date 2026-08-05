@@ -233,3 +233,38 @@ async function updateWeather(lat, lon) {
 setInterval(() => {
     createSatelliteMarkers();
 }, 5000);
+// ===== Tracker AI =====
+
+const aiInput = document.getElementById("aiInput");
+const aiMessages = document.getElementById("aiMessages");
+const sendAI = document.getElementById("sendAI");
+
+sendAI.addEventListener("click", sendMessage);
+
+aiInput.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+        sendMessage();
+    }
+});
+
+function addMessage(sender, text) {
+    aiMessages.innerHTML += `
+        <div class="ai-message">
+            <strong>${sender}:</strong> ${text}
+        </div>
+    `;
+
+    aiMessages.scrollTop = aiMessages.scrollHeight;
+}
+
+function sendMessage() {
+    const question = aiInput.value.trim();
+
+    if (question === "") return;
+
+    addMessage("You", question);
+
+    aiInput.value = "";
+
+    addMessage("Tracker AI", "Thinking...");
+}
