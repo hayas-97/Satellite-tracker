@@ -74,7 +74,6 @@ if (satelliteList) {
         item.textContent = sat.name;
 
         item.onclick = () => {
-    showSatellitePopup(sat.name);
 
     if (satelliteMarkers[index]) {
         satelliteMarkers[index].openPopup();
@@ -119,7 +118,6 @@ const lng = satellite.degreesLong(geo.longitude);
 
 marker.on("click", () => {
     document.getElementById("satName").textContent = sat.name;
-    showSatellitePopup(sat.name);
     document.getElementById("satLat").textContent = lat.toFixed(4) + "°";
     document.getElementById("satLon").textContent = lng.toFixed(4) + "°";
     const altitude = Math.sqrt(
