@@ -235,22 +235,3 @@ async function updateWeather(lat, lon) {
 setInterval(() => {
     createSatelliteMarkers();
 }, 5000);
-// ===== Satellite Popup =====
-
-const satelliteImages = {
-    default: "https://placehold.co/300x200/png?text=Satellite"
-};
-function showSatellitePopup(name) {
-    const popup = document.getElementById("satellitePopup");
-    const image = document.getElementById("popupImage");
-    const title = document.getElementById("popupName");
-
-    image.src = satelliteImages[name] || satelliteImages.default;
-    title.textContent = name;
-
-    popup.style.display = "block";
-
-    setTimeout(() => {
-        popup.style.display = "none";
-    }, 3000);
-}
