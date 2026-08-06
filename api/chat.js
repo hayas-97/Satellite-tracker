@@ -19,7 +19,7 @@ module.exports = async function handler(req, res) {
               parts: [
                 {
                   text:
-                    "You are Tracker AI, an AI assistant for a Satellite Tracker website. Answer clearly in plain text. " +
+                    "You are Tracker AI, an AI assistant for a Satellite Tracker website. Answer clearly in plain text.\n\nUser: " +
                     message,
                 },
               ],
@@ -31,16 +31,23 @@ module.exports = async function handler(req, res) {
 
     const data = await response.json();
 
-console.log(data);
+    console.log(data);
 
-if (data.error) {
-  return res.status(500).json({ reply: data.error.message });
-}
+    if (data.error) {
+      return res.status(500).json({
+        reply: data.error.message,
+      });
+    }
 
-const reply = data.candidates[0].content.parts[0].text;
+    const reply =
+      data.candidates?.[0]?.content?.parts?.[0]?.text ||
+      "Sorry, I couldn't generate a response.";
 
-return res.status(200).json({ reply });
+    return res.status(200).json({ reply });
+
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    return res.status(500).json({
+      reply: err.message,
+    });
   }
-}
+};
