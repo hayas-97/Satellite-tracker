@@ -257,14 +257,36 @@ function addMessage(sender, text) {
     aiMessages.scrollTop = aiMessages.scrollHeight;
 }
 
-function sendMessage() {
+async function sendMessage() {
     const question = aiInput.value.trim();
 
-    if (question === "") return;
+    if (!question) return;
 
     addMessage("You", question);
-
     aiInput.value = "";
 
     addMessage("Tracker AI", "Thinking...");
+
+    try {
+        const response = await fetch("/api/chat", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                message: question,
+            }),
+        });
+
+        const data = await response.json();
+
+        aiMessages.lastElementChild.innerHTML =
+            "<strong>Tracker AI:</strong> " + data.reply;
+
+    } catch (error) {
+        aiMessages.lastElementChild.innerHTML =
+            "<strong>Tracker AI:</strong> ❌ Unable to connect.";
+    }
+
+    aiMessages.scrollTop = aiMessages.scrollHeight;
 }
