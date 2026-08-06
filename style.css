@@ -379,7 +379,7 @@ button:hover{
 }
 
 .ai-messages{
-    height:300px;
+    height:170px;
     overflow-y:auto;
     background:rgba(255,255,255,.05);
     border-radius:12px;
@@ -405,4 +405,20 @@ button:hover{
 .ai-input button{
     width:90px;
     margin:0;
+}
+.ai-sidebar{
+    position:absolute;
+    left:15px;
+    top:500px;
+    width:340px;
+    height:300px;
+
+    padding:15px;
+    border-radius:18px;
+
+    background:rgba(8,20,40,.88);
+    backdrop-filter:blur(12px);
+    box-shadow:0 10px 25px rgba(0,0,0,.45);
+
+    pointer-events:auto;
 }
