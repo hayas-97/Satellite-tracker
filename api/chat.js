@@ -1,53 +1,54 @@
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method not allowed" });
+    return res.status(405).json({
+      reply: "Method not allowed"
+    });
   }
 
-  const { message } = req.body;
-
   try {
+    const { message } = req.body;
+
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+      "https://openrouter.ai/api/v1/chat/completions",
       {
         method: "POST",
         headers: {
+          "Authorization": `Bearer ${process.env.GEMINI_API_KEY}`,
           "Content-Type": "application/json",
+          "HTTP-Referer": "https://satellite-tracker-sigma-gray.vercel.app",
+          "X-Title": "Tracker AI"
         },
         body: JSON.stringify({
-          contents: [
+          model: "meta-llama/llama-3.3-8b-instruct:free",
+          messages: [
             {
-              parts: [
-                {
-                  text:
-                    "You are Tracker AI, an AI assistant for a Satellite Tracker website. Answer clearly in plain text.\n\nUser: " +
-                    message,
-                },
-              ],
+              role: "system",
+              content: "You are Tracker AI. Answer clearly in plain text. You can answer questions about satellites, weather, science, geography, technology and general knowledge."
             },
-          ],
-        }),
+            {
+              role: "user",
+              content: message
+            }
+          ]
+        })
       }
     );
 
     const data = await response.json();
 
-    console.log(data);
-
-    if (data.error) {
+    if (!response.ok) {
       return res.status(500).json({
-        reply: data.error.message,
+        reply: data.error?.message || "OpenRouter error"
       });
     }
 
-    const reply =
-      data.candidates?.[0]?.content?.parts?.[0]?.text ||
-      "Sorry, I couldn't generate a response.";
-
-    return res.status(200).json({ reply });
+    return res.status(200).json({
+      reply: data.choices[0].message.content
+    });
 
   } catch (err) {
     return res.status(500).json({
-      reply: err.message,
+      reply: err.message
     });
   }
 };
