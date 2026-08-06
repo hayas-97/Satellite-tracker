@@ -38,38 +38,61 @@
   <!-- Main Container -->
   <div class="app-container">
         <!-- Left Panel -->
-    <aside class="sidebar">
+    <!-- Satellite Panel -->
+<aside class="sidebar">
 
-      <div class="logo">
+    <div class="logo">
         <i class="fas fa-satellite"></i>
         <h1>Satellite Tracker Pro</h1>
-      </div>
+    </div>
 
-
-      <div class="satellite-list">
+    <div class="satellite-list">
         <h3>🛰 Satellites</h3>
         <div id="satelliteList"></div>
-      </div>
-      <div class="ai-card">
-    <h3>🤖 Tracker AI</h3>
+    </div>
 
-    <div id="aiMessages" class="ai-messages">
-        <div class="ai-message">
-            Hello! I'm Tracker AI. Ask me anything.
+</aside>
+
+<!-- AI Panel -->
+<aside class="ai-sidebar">
+
+    <div class="ai-card">
+        <h3>🤖 Tracker AI</h3>
+
+        <div id="aiMessages" class="ai-messages">
+            <div class="ai-message">
+                Hello! I'm Tracker AI. Ask me anything.
+            </div>
+        </div>
+
+        <div class="ai-input">
+            <input
+                type="text"
+                id="aiInput"
+                placeholder="Ask me anything..."
+            >
+            <button id="sendAI">Send</button>
         </div>
     </div>
 
-    <div class="ai-input">
-        <input
-            type="text"
-            id="aiInput"
-            placeholder="Ask me anything..."
-        >
-        <button id="sendAI">Send</button>
-    </div>
-      </div>
+</aside>
+    .ai-sidebar{
+    position:absolute;
+    left:15px;
+    top:430px;      /* Adjust this value if needed */
+    width:340px;
+    height:420px;
 
-    </aside>
+    padding:18px;
+    border-radius:18px;
+
+    background:rgba(8,20,40,.88);
+    backdrop-filter:blur(12px);
+
+    box-shadow:0 10px 25px rgba(0,0,0,.45);
+
+    pointer-events:auto;
+}
 
     <!-- Right Information Panel -->
     <section class="info-panel">
