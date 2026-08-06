@@ -19,7 +19,7 @@ module.exports = async function handler(req, res) {
           "X-Title": "Tracker AI"
         },
         body: JSON.stringify({
-          model: "meta-llama/llama-3.3-8b-instruct:free",
+          model: "google/gemma-3-4b-it:free",
           messages: [
             {
               role: "system",
