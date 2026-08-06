@@ -379,7 +379,7 @@ button:hover{
 }
 
 .ai-messages{
-    height:170px;
+    height:230px;
     overflow-y:auto;
     background:rgba(255,255,255,.05);
     border-radius:12px;
@@ -409,9 +409,9 @@ button:hover{
 .ai-sidebar{
     position:absolute;
     left:15px;
-    top:500px;
-    width:340px;
-    height:300px;
+    top:620px;
+    width:380px;
+    height:360px;
 
     padding:15px;
     border-radius:18px;
