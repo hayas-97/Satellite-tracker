@@ -19,7 +19,7 @@ module.exports = async function handler(req, res) {
           "X-Title": "Tracker AI"
         },
         body: JSON.stringify({
-          model: "fish-audio/s2.1-pro-free:free",
+          model: "inclusionai/ling-3.0-tiny:free",
           messages: [
             {
               role: "system",
