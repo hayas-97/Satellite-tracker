@@ -374,7 +374,7 @@ button:hover{
 .ai-card h3{
     color:#3cb6ff;
     text-align:center;
-    margin-bottom:25px;
+    margin-bottom:20px;
     font-size:22px;
 }
 
@@ -409,7 +409,7 @@ button:hover{
 .ai-sidebar{
     position:absolute;
     left:15px;
-    top:200px;
+    top:230px;
     width:380px;
     height:230px;
 
