@@ -19,7 +19,7 @@ module.exports = async function handler(req, res) {
           "X-Title": "Tracker AI"
         },
         body: JSON.stringify({
-          model: "model: "openrouter/free",",
+          model: "model: "model: "inclusionai/ling-3.0-tiny:free",",",
           messages: [
             {
               role: "system",
