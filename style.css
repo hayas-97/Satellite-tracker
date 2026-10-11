@@ -363,12 +363,12 @@ button:hover{
 
 
 .ai-card{
-    margin-top:25px;
+    margin-top:15px;
     background:rgba(8,20,40,.92);
     border:2px solid #2196f3;
     border-radius:18px;
     padding:18px;
-    width:100%;
+    width:50%;
 }
 
 .ai-card h3{
@@ -379,7 +379,7 @@ button:hover{
 }
 
 .ai-messages{
-    height:230px;
+    height:200px;
     overflow-y:auto;
     background:rgba(255,255,255,.05);
     border-radius:12px;
@@ -409,9 +409,9 @@ button:hover{
 .ai-sidebar{
     position:absolute;
     left:15px;
-    top:300px;
-    width:380px;
-    height:360px;
+    top:250px;
+    width:300px;
+    height:200px;
 
     padding:15px;
     border-radius:18px;
