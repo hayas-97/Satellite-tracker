@@ -1,3 +1,4 @@
+
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({
@@ -8,18 +9,24 @@ module.exports = async function handler(req, res) {
   try {
     const { message } = req.body;
 
+    if (!message) {
+      return res.status(400).json({
+        reply: "Please enter a message."
+      });
+    }
+
     const response = await fetch(
       "https://openrouter.ai/api/v1/chat/completions",
       {
         method: "POST",
         headers: {
-          "Authorization": `Bearer ${process.env.GEMINI_API_KEY}`,
+          "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
           "Content-Type": "application/json",
           "HTTP-Referer": "https://satellite-tracker-sigma-gray.vercel.app",
           "X-Title": "Tracker AI"
         },
         body: JSON.stringify({
-          model: "model: "model: "inclusionai/ling-3.0-tiny:free",",",
+          model: "inclusionai/ling-3.0-tiny:free",
           messages: [
             {
               role: "system",
@@ -43,12 +50,13 @@ module.exports = async function handler(req, res) {
     }
 
     return res.status(200).json({
-      reply: data.choices[0].message.content
+      reply: data.choices?.[0]?.message?.content
+        || "The AI returned an empty response."
     });
 
   } catch (err) {
     return res.status(500).json({
-      reply: err.message
+      reply: "Unable to connect to the AI service."
     });
   }
 };
